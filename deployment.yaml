@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: informa-poc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app:  informa-poc
+  template:
+    metadata:
+      labels:
+        app: informa-poc
+    spec:
+      containers:
+      - name: informa-poc
+        image: informa1048135.azurecr.io/informa-poc:latest
+        ports:
+        - containerPort: 9001
