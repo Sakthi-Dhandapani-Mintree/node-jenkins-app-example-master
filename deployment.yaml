@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app.kubernetes.io/name: load-balancer-example
   name: informa-poc
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app:  informa-poc
+      app.kubernetes.io/name: load-balancer-example
   template:
     metadata:
       labels:
-        app: informa-poc
+        app.kubernetes.io/name: load-balancer-example
     spec:
       containers:
-      - name: informa-poc
-        image: informa1048135.azurecr.io/informa-poc:latest
+      - image: informa1048135.azurecr.io/informa-poc:latest
+        name: informa-poc
         ports:
-        - containerPort: 9001
+        - containerPort: 8090
