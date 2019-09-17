@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: nginx-deployment
   labels:
-    app.kubernetes.io/name: load-balancer-example
-  name: informa-poc
+    app: nginx
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: load-balancer-example
+      app: nginx
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: load-balancer-example
+        app: nginx
     spec:
       containers:
-      - image: informa1048135.azurecr.io/informa-poc:latest
-        name: informa-poc
+      - name: nginx
+        image: informa1048135.azurecr.io/informa-poc:latest
         ports:
-        - containerPort: 8090
+        - containerPort: 90
