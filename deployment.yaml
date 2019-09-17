@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: informa1048135.azurecr.io/informa-poc:latest
+        image: nginx:1.7.9
         ports:
-        - containerPort: 90
+        - containerPort: 80
