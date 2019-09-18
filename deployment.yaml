@@ -17,6 +17,7 @@ spec:
       containers:
       - name: informa
         image: informa1048135.azurecr.io/informa-poc:v1
+        imagePullPolicy: "Always"
       imagePullSecrets:
       - name: acr-auth
         ports:
