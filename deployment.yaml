@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: informa
-        image: informa1048135.azurecr.io/informa-poc:jenkins${BUILD_NUMBER}
+        image: informa1048135.azurecr.io/informa-poc:latest
       imagePullSecrets:
       - name: acr-auth
         ports:
