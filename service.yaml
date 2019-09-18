@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: informa
+  name: informa-cicd
 spec:
   selector:
-    app: informa
+    app: informa-poc
     tier: backend
   type: LoadBalancer
   ports:
