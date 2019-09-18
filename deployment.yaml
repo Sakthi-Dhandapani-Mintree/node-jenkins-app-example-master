@@ -14,6 +14,7 @@ spec:
       labels:
         app: informa
     spec:
+    terminationGracePeriodSeconds: 30
       containers:
       - name: informa
         image: informa1048135.azurecr.io/informa-poc:v1
