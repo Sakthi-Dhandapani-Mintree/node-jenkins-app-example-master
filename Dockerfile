@@ -1,16 +1,19 @@
-# base image
-FROM node:6.9.5
+FROM node:8.10.0-alpine
 
-# set working directory
-WORKDIR /app
+# Setting working directory. All the path will be relative to WORKDIR
+WORKDIR /usr/src/app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# Installing dependencies
+COPY package*.json ./
+#RUN npm install
 
-# install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install --silent
-RUN npm install react-scripts@3.0.1 -g --silent
+# Copying source files
+COPY . .
 
-# start app
-CMD ["npm", "start"]
+# Building app
+#RUN npm run build
+
+RUN cd /usr/src/app && npm install --production
+
+# Running the app
+CMD [ "npm", "start" ]
