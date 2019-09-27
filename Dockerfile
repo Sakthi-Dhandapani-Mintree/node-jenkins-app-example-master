@@ -11,7 +11,7 @@ COPY package*.json ./
 COPY . .
 
 # Building app
-#RUN npm run build
+RUN npm run build
 
 RUN cd /usr/src/app && npm install --production
 
