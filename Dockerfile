@@ -1,13 +1,19 @@
 FROM node:8.10.0-alpine
 
-RUN mkdir -p /usr/app/build
-WORKDIR /usr/app
+# Setting working directory. All the path will be relative to WORKDIR
+WORKDIR /usr/src/app
 
-COPY ./build /usr/app/build
-COPY ./package.json /usr/app/package.json
+# Installing dependencies
+COPY package*.json ./
+RUN npm install
 
-RUN cd /usr/app && npm install --production
+# Copying source files
+COPY . .
 
-EXPOSE 3000
+# Building app
+RUN npm run build
 
-CMD [ "npm", "run", "start" ]
+#RUN cd /usr/src/app && npm install --production
+
+# Running the app
+CMD [ "npm", "start" ]
