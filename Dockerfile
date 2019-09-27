@@ -1,17 +1,16 @@
-FROM alpine:3.9
+# base image
+FROM node:12.2.0-alpine
 
-# Setting working directory. All the path will be relative to WORKDIR
-WORKDIR /usr/src/app
+# set working directory
+WORKDIR /app
 
-# Installing dependencies
-COPY package*.json ./
-RUN npm install
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-# Copying source files
-COPY . .
+# install and cache app dependencies
+COPY package.json /app/package.json
+RUN npm install --silent
+RUN npm install react-scripts@3.0.1 -g --silent
 
-# Building app
-RUN npm run build
-
-# Running the app
-CMD [ "npm", "start" ]
+# start app
+CMD ["npm", "start"]
